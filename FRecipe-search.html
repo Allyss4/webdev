@@ -5,6 +5,9 @@
   <title>Search Results</title>
   <link rel="stylesheet" href="styleffs.css">
   <style>
+    body {
+      background: none;
+    }
     .gallery {
       display: flex;
       justify-content: space-evenly;
@@ -64,11 +67,9 @@
             #searchInput {
                 padding: 10px 40px 10px 12px;
                 font-size: 15px;
-                width: 100%;
             }
     
             #searchButton {
-                width: 40px;
                 font-size: 16px;
             }
         }
@@ -95,13 +96,10 @@
             #searchInput {
                 padding: 8px 35px 8px 10px;
                 font-size: 14px;
-                width: 160%;
             }
     
             #searchButton {
-                width: 35px;
                 font-size: 14px;
-                margin-right: 10%;
             }
     
             .suggestions-dropdown {
@@ -119,15 +117,15 @@
 </head>
 <body>
 
-    <div class="center-container">
-        <div class="search-container">
-          <form id="searchForm">
-            <input type="text" id="searchInput" placeholder="Search..." required autofocus>
-            <ul id="suggestionsList" class="suggestions-dropdown" style="display: none;"></ul>
-          </form>
-          <button type="submit" id="searchButton">🔍︎</button>
-        </div>
+  <div class="center-container">
+    <div class="search-container">
+      <form id="searchForm" onsubmit="return false;">
+        <input type="text" id="searchInput" placeholder="Search..." required autofocus>
+        <button type="button" id="searchButton">🔍︎</button>
+        <ul id="suggestionsList" class="suggestions-dropdown" style="display: none;"></ul>
+      </form>
     </div>
+  </div>
 
   <h1 style="margin-left: 3%;">Search Results...</h1>
   <div id="resultsList" class="gallery"></div>
@@ -191,6 +189,10 @@ function handleSearch() {
         handleSearch();
       }
     });
+    document.getElementById('searchForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            handleSearch();
+        });
 
     const queryParams = new URLSearchParams(window.location.search);
     const query = queryParams.get('query')?.toLowerCase().trim() || "";

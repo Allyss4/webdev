@@ -93,11 +93,9 @@
             #searchInput {
                 padding: 10px 40px 10px 12px;
                 font-size: 15px;
-                width: 225%;
             }
 
             #searchButton {
-                width: 40px;
                 font-size: 16px;
             }
         }
@@ -123,13 +121,10 @@
             #searchInput {
                 padding: 8px 35px 8px 10px;
                 font-size: 14px;
-                width: 160%;
             }
     
             #searchButton {
-                width: 35px;
-                font-size: 14px;
-                margin-right: 10%;
+                font-size: 10px;
             }
     
             .suggestions-dropdown {
@@ -146,13 +141,13 @@
         <body>
             <div class="center-container">
                 <div class="search-container">
-                  <form id="searchForm">
+                  <form id="searchForm" onsubmit="return false;">
                     <input type="text" id="searchInput" placeholder="Search..." required autofocus>
+                    <button type="button" id="searchButton">🔍︎</button>
                     <ul id="suggestionsList" class="suggestions-dropdown" style="display: none;"></ul>
                   </form>
-                  <button type="submit" id="searchButton">🔍︎</button>
                 </div>
-            </div>    
+              </div>
                   
             <div class="gallery">
                 <div class="dish">
@@ -351,13 +346,13 @@
           }
         });
     
-    function handleSearch() {
-          const query = document.getElementById('searchInput').value.trim();
-          if (query) {
-            window.location.href = `FRecipe-search.html?query=${encodeURIComponent(query)}`;
-          } else {
-            alert("Please enter a search term.");
-          }
+        function handleSearch() {
+            const query = document.getElementById('searchInput').value.trim();
+            if (query) {
+                window.location.href = `FRecipe-search.html?query=${encodeURIComponent(query)}`;
+            } else {
+                alert("Please enter a search term.");
+            }
         }
         document.getElementById('searchButton').addEventListener('click', handleSearch);
         document.getElementById('searchInput').addEventListener('keypress', function (event) {
@@ -365,6 +360,10 @@
             event.preventDefault(); 
             handleSearch();
           }
+        });
+        document.getElementById('searchForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            handleSearch();
         });
 
             </script>
