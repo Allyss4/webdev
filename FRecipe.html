@@ -132,19 +132,19 @@
     
             .logo {
                 margin-bottom: 0;
-                max-height: 30px; /* Match burger menu height */
+                max-height: 30px; /* burger menu height */
                 max-width: none;
                 margin-right: 0;
             }
     
             h1 {
-                display: none; /* Hide the title on mobile */
+                display: none; /* Hide the title sa mobile view */
             }
             
             nav {
                 width: 100%;
                 order: 2;
-                /* Rest of nav styles remain unchanged */
+                /* Rest of nav styles hindi mag babago */
             }
             
             nav ul {
@@ -202,16 +202,15 @@
     const navUl = document.querySelector('nav ul');
     const recipeFrame = document.getElementById('recipeFrame');
     
-    // Toggle menu when burger icon is clicked
+    
     burgerMenu.addEventListener('click', function(event) {
-        event.stopPropagation(); // Prevent this click from being caught by the document event listener
+        event.stopPropagation(); 
         burgerMenu.classList.toggle('active');
         navUl.classList.toggle('active');
     });
     
-    // Close menu when clicking anywhere else on the document
+    
     document.addEventListener('click', function(event) {
-        // Check if menu is open and click is outside nav and burger menu
         if (navUl.classList.contains('active') && 
             !navUl.contains(event.target) && 
             !burgerMenu.contains(event.target)) {
@@ -220,14 +219,11 @@
         }
     });
     
-    // Add event listener to iframe once it loads
     recipeFrame.addEventListener('load', function() {
-        // Get the iframe's document
         const iframeDocument = recipeFrame.contentDocument || recipeFrame.contentWindow.document;
         
-        // Add click event to the iframe document
         iframeDocument.addEventListener('click', function() {
-            // Close the menu if it's open
+           
             if (navUl.classList.contains('active')) {
                 burgerMenu.classList.remove('active');
                 navUl.classList.remove('active');
