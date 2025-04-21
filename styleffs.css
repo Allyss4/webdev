@@ -222,3 +222,7 @@ header {
           .suggestions-dropdown li:hover {
             background-color: #f5f5f5;
           }
+
+          .center-container {
+            margin-top: 10px;
+          }
